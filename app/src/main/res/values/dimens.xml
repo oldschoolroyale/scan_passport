@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paragraph_margin">6dp</dimen>
+    <dimen name="text_size_top_title">16sp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="row_margin">3dp</dimen>
+    <dimen name="text_size_medium_title">14sp</dimen>
+    <dimen name="margin_input_horizontal">24dp</dimen>
+    <dimen name="margin_input_vertical">16dp</dimen>
+    <dimen name="spacing_large">6dp</dimen>
+    <dimen name="spacing_xlarge">20dp</dimen>
+    <dimen name="spacing_mlarge">7dp</dimen>
+</resources>

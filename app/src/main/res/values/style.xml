@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Black text -->
+    <style name="MyCustomTextBlack">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text_style_header" parent="MyCustomTextBlack">
+        <item name="android:textSize">@dimen/text_size_top_title</item>
+        <item name="android:fontFamily">@font/euclid_square_semibold</item>
+    </style>
+
+    <style name="sign_up_button" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="colorButtonNormal">@color/purple_500</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+</resources>

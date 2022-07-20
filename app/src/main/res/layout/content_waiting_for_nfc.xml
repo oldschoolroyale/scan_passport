@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/margin_input_horizontal"
+    android:paddingTop="@dimen/margin_input_vertical"
+    android:paddingRight="@dimen/margin_input_horizontal"
+    android:paddingBottom="@dimen/margin_input_vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:id="@+id/placeYourDeviceInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="165dp"
+        android:gravity="center"
+        android:text="@string/waiting_for_nfc_text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+</RelativeLayout>
