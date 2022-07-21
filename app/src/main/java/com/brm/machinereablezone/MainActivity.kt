@@ -9,7 +9,7 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.brm.machinereablezone.model.DocType
-import com.brm.machinereablezone.ui.ReadingPassportActivity
+import com.brm.machinereablezone.ui.nfc.ReadingPassportActivity
 import com.brm.machinereablezone.ui.camera.CaptureActivity
 import com.brm.machinereablezone.utils.AppUtil
 import com.brm.machinereablezone.utils.PermissionUtil

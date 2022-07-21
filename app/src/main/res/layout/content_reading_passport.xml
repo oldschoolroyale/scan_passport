@@ -12,8 +12,8 @@
     <ProgressBar
         android:id="@+id/mrtdProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:max="100"
@@ -21,14 +21,31 @@
         android:progressDrawable="@drawable/circular" />
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnim"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/scan_passport"
-        android:layout_centerInParent="true"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnim"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/scan_passport"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/helper_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/paragraph_margin"
+            android:text="Put your phone on top of\nyour passport/ID"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:gravity="center"/>
+    </LinearLayout>
+
+
 
 
 </RelativeLayout>

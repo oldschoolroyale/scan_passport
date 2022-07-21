@@ -15,8 +15,7 @@ import com.brm.machinereablezone.R
 import com.brm.machinereablezone.databinding.FragmentMainBinding
 import com.brm.machinereablezone.model.DocType
 import com.brm.machinereablezone.model.EntryData
-import com.brm.machinereablezone.ui.ReadingPassportActivity
-import com.brm.machinereablezone.ui.nfc.NfcActivity
+import com.brm.machinereablezone.ui.nfc.ReadingPassportActivity
 import com.brm.machinereablezone.utils.ViewAnimation.collapse
 import com.brm.machinereablezone.utils.ViewAnimation.expand
 

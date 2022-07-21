@@ -18,9 +18,5 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="circularDeterminateProgressBar">
-        <item name="android:indeterminateOnly">false</item>
-        <item name="android:progressDrawable">@drawable/custom_circle_progress</item>
-    </style>
 
 </resources>

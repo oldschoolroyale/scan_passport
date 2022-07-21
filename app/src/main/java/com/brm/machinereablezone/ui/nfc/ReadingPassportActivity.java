@@ -1,14 +1,17 @@
-package com.brm.machinereablezone.ui;
+package com.brm.machinereablezone.ui.nfc;
 
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.brm.machinereablezone.BitiMRTD.Constants.MrtdConstants;
 import com.brm.machinereablezone.BitiMRTD.Parser.DG1Parser;
 import com.brm.machinereablezone.BitiMRTD.Reader.BacInfo;
@@ -16,7 +19,6 @@ import com.brm.machinereablezone.BitiMRTD.Reader.DESedeReader;
 import com.brm.machinereablezone.BitiMRTD.Reader.ProgressListenerInterface;
 import com.brm.machinereablezone.BitiMRTD.Tools.C0464Tools;
 import com.brm.machinereablezone.R;
-import com.brm.machinereablezone.ui.nfc.AbstractNfcActivity;
 import com.brm.machinereablezone.ui.result.ResultActivity;
 import com.brm.machinereablezone.utils.TagProvider;
 
@@ -34,7 +36,8 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
     private ProgressBar mrtdProgressBar;
     private String passportNumber;
     private byte[] sod;
-    private View lottieAnim;
+    private LottieAnimationView lottieAnim;
+    private TextView helperTv;
 
     /* access modifiers changed from: protected */
     public void onCreate(Bundle bundle) {
@@ -51,12 +54,15 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
         this.dateOfExpiration = (String) getIntent().getSerializableExtra("dateOfExpiration");
         this.mrtdProgressBar = findViewById(R.id.mrtdProgressBar);
         this.lottieAnim = findViewById(R.id.lottieAnim);
+        this.helperTv = findViewById(R.id.helper_tv);
     }
 
     /* access modifiers changed from: protected */
     public void readNfc() {
         System.out.println("Read nfc");
-        lottieAnim.setVisibility(View.INVISIBLE);
+        lottieAnim.setAnimation(R.raw.scan_passport);
+        helperTv.setText("Working...\nDon't move");
+        setMrtdProgressBarPercentage(2);
         AsyncReader asyncReader2 = new AsyncReader(this, this.passportNumber, this.dateOfBirth, this.dateOfExpiration);
         this.asyncReader = asyncReader2;
         asyncReader2.execute(new Void[0]);
@@ -91,6 +97,10 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
 
     public void setMrtdProgressBarPercentage(int i) {
         this.mrtdProgressBar.setProgress(i);
+        ObjectAnimator animation = ObjectAnimator.ofInt(this.mrtdProgressBar, "progress", 0, 100);
+        animation.setDuration(2000); // in milliseconds
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
     }
 
     public void setDg1(byte[] bArr) {
