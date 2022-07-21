@@ -16,11 +16,14 @@ class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         dg1 = intent.extras!!.getByteArray("dg1")!!
         dg2 = intent.extras!!.getByteArray("dg2")!!
 
         val bitmap = DG2Parser(dg2).bitmap
-        findViewById<ImageView>(R.id.img_avatar).setImageBitmap(bitmap)
+        binding.imgAvatar.setImageBitmap(bitmap)
 
         val dg1Parser = DG1Parser(dg1)
         binding.nameTv.text = "${dg1Parser.givenNames} ${dg1Parser.surname}"
@@ -28,5 +31,10 @@ class ResultActivity : AppCompatActivity() {
         binding.countryTv.text = "Nationality: ${dg1Parser.nationalityCode}"
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return super.onSupportNavigateUp()
     }
 }

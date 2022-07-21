@@ -137,13 +137,14 @@
                         android:layout_marginBottom="@dimen/spacing_large"
                         android:orientation="vertical">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <EditText
                             android:id="@+id/et_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="XXXXXXXXXX"
-                            android:textAllCaps="true"
-                            android:maxLength="15"/>
+                            android:inputType="textCapCharacters"
+                            android:maxLength="15"
+                            android:maxLines="1"/>
 
                         <Button
                             android:id="@+id/bt_continue_title"
@@ -219,13 +220,14 @@
                         android:layout_marginBottom="@dimen/spacing_large"
                         android:orientation="vertical">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <EditText
                             android:id="@+id/et_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="YY/MM/DD"
-                            android:inputType="number"
-                            android:maxLength="6"/>
+                            android:inputType="date"
+                            android:maxLength="9"
+                            android:maxLines="1"/>
 
                         <Button
                             android:id="@+id/bt_continue_description"
@@ -301,13 +303,13 @@
                         android:layout_marginBottom="@dimen/spacing_large"
                         android:orientation="vertical">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <EditText
                             android:id="@+id/et_login"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="YY/MM/DD"
-                            android:inputType="number"
-                            android:maxLength="6"
+                            android:inputType="date"
+                            android:maxLength="9"
                             android:maxLines="1" />
 
                         <Button

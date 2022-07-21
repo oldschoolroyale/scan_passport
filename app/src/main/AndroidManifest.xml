@@ -38,8 +38,13 @@
             android:name=".ui.nfc.ReadingPassportActivity"
             android:exported="false" />
         <activity android:name=".ui.camera.CaptureActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false"/>
+
+        <activity android:name=".WaitingForNfcActivity"
+            android:exported="false"/>
+
+        <activity android:name=".ReadingPassportActivity2"
             android:exported="false"/>
 
     </application>

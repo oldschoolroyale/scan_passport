@@ -12,6 +12,7 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.brm.machinereablezone.MainActivity
 import com.brm.machinereablezone.R
+import com.brm.machinereablezone.WaitingForNfcActivity
 import com.brm.machinereablezone.databinding.FragmentMainBinding
 import com.brm.machinereablezone.model.DocType
 import com.brm.machinereablezone.model.EntryData
@@ -59,15 +60,15 @@ class MainFragment : Fragment() {
             collapseAndContinue(0)
         }
         binding.btContinueDescription.setOnClickListener {
-            entryData.birthDate = binding.etDescription.text.toString()
+            entryData.birthDate = binding.etDescription.text.toString().replace("/", "")
             collapseAndContinue(1)
         }
         binding.btContinueTime.setOnClickListener {
-            entryData.issueDate = binding.etLogin.text.toString()
+            entryData.issueDate = binding.etLogin.text.toString().replace("/", "")
             collapseAndContinue(2)
         }
         binding.btContinueDate.setOnClickListener {
-            val intent = Intent(context, ReadingPassportActivity::class.java)
+            val intent = Intent(context, WaitingForNfcActivity::class.java)
             intent.putExtra("passportNumber", entryData.passportNumber)
             intent.putExtra("dateOfBirth", entryData.birthDate)
             intent.putExtra("dateOfExpiration", entryData.issueDate)

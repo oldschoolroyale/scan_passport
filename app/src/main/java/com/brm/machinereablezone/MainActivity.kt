@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             if (requestCode == APP_CAMERA_ACTIVITY_REQUEST_CODE) {
                 val mrzInfo = data!!.getSerializableExtra(CaptureActivity.MRZ_RESULT) as MRZInfo?
                 if (mrzInfo != null) {
-                    val intent = Intent(this, ReadingPassportActivity::class.java)
+                    val intent = Intent(this, WaitingForNfcActivity::class.java)
                     intent.putExtra("passportNumber", mrzInfo.documentNumber)
                     intent.putExtra("dateOfBirth", mrzInfo.dateOfBirth)
                     intent.putExtra("dateOfExpiration", mrzInfo.dateOfExpiry)

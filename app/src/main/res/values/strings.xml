@@ -65,7 +65,7 @@
     <string name="error_dg1_is_null">Application error \'DG1\', please try again. </string>
     <string name="error_dg2_is_null">Application error \'DG2\', please try again.</string>
     <string name="error_error">Error</string>
-    <string name="error_lost_connexion">Lost connexion, please try again</string>
+    <string name="error_lost_connexion">Lost connection, please try again</string>
     <string name="error_mutual_authentication_failed">Authentication failed, please check the passport No. / date of birth / date of expiry.</string>
     <string name="error_nfc_exception">An error occurred, please try again.</string>
     <string name="fab_transformation_scrim_behavior">android.support.design.transformation.FabTransformationScrimBehavior</string>
