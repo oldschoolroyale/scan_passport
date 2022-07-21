@@ -31,6 +31,7 @@ android {
         }
     }
 
+
     buildFeatures {
         viewBinding  true
         dataBinding  true
@@ -46,6 +47,8 @@ android {
 }
 
 dependencies {
+
+    def lottieVersion = "3.4.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -78,5 +81,8 @@ dependencies {
 
     //scuba for card reading and process
     implementation 'net.sf.scuba:scuba-sc-android:0.0.20'
+
+    implementation "com.airbnb.android:lottie:" + lottieVersion
+
 
 }

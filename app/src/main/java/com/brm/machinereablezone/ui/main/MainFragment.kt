@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
+import com.brm.machinereablezone.MainActivity
 import com.brm.machinereablezone.R
 import com.brm.machinereablezone.databinding.FragmentMainBinding
+import com.brm.machinereablezone.model.DocType
 import com.brm.machinereablezone.model.EntryData
 import com.brm.machinereablezone.ui.ReadingPassportActivity
 import com.brm.machinereablezone.ui.nfc.NfcActivity
@@ -31,8 +33,6 @@ class MainFragment : Fragment() {
     private var currentStep = 0
 
     private val entryData = EntryData()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -98,6 +98,14 @@ class MainFragment : Fragment() {
                 collapseAll()
                 expand(view_list[2])
             }
+        }
+
+        binding.scanPassBtn.setOnClickListener {
+            (activity as MainActivity).startCamera(DocType.PASSPORT)
+        }
+
+        binding.scanIdBtn.setOnClickListener {
+            (activity as MainActivity).startCamera(DocType.ID_CARD)
         }
 
         return binding.root

@@ -9,6 +9,8 @@
     <dimen name="margin_input_horizontal">24dp</dimen>
     <dimen name="margin_input_vertical">16dp</dimen>
     <dimen name="spacing_large">6dp</dimen>
-    <dimen name="spacing_xlarge">20dp</dimen>
+    <dimen name="spacing_xlarge">22dp</dimen>
     <dimen name="spacing_mlarge">7dp</dimen>
+    <dimen name="spacing_mxlarge">25dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
 </resources>

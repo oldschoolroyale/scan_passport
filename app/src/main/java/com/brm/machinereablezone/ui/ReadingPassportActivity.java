@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.brm.machinereablezone.BitiMRTD.Constants.MrtdConstants;
@@ -33,6 +34,7 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
     private ProgressBar mrtdProgressBar;
     private String passportNumber;
     private byte[] sod;
+    private View lottieAnim;
 
     /* access modifiers changed from: protected */
     public void onCreate(Bundle bundle) {
@@ -47,13 +49,14 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
         this.passportNumber = (String) getIntent().getSerializableExtra("passportNumber");
         this.dateOfBirth = (String) getIntent().getSerializableExtra("dateOfBirth");
         this.dateOfExpiration = (String) getIntent().getSerializableExtra("dateOfExpiration");
-        this.mrtdProgressBar = (ProgressBar) findViewById(R.id.mrtdProgressBar);
-        readNfc();
+        this.mrtdProgressBar = findViewById(R.id.mrtdProgressBar);
+        this.lottieAnim = findViewById(R.id.lottieAnim);
     }
 
     /* access modifiers changed from: protected */
     public void readNfc() {
         System.out.println("Read nfc");
+        lottieAnim.setVisibility(View.INVISIBLE);
         AsyncReader asyncReader2 = new AsyncReader(this, this.passportNumber, this.dateOfBirth, this.dateOfExpiration);
         this.asyncReader = asyncReader2;
         asyncReader2.execute(new Void[0]);
@@ -76,17 +79,12 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
     }
 
     public void showError(final String str) {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                if (ReadingPassportActivity.this.isActivityRunning) {
-                    new AlertDialog.Builder(ReadingPassportActivity.this)
-                            .setTitle(ReadingPassportActivity.this.getResources().getString(R.string.error_nfc))
-                            .setMessage(str).setCancelable(false).setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            ReadingPassportActivity.this.finish();
-                        }
-                    }).create().show();
-                }
+        runOnUiThread(() -> {
+            if (ReadingPassportActivity.this.isActivityRunning) {
+                new AlertDialog.Builder(ReadingPassportActivity.this)
+                        .setTitle(ReadingPassportActivity.this.getResources().getString(R.string.error_nfc))
+                        .setMessage(str).setCancelable(false).setPositiveButton("ok",
+                                (dialogInterface, i) -> ReadingPassportActivity.this.finish()).create().show();
             }
         });
     }
@@ -123,6 +121,11 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
             this.isActivityRunning = false;
             this.asyncReader.cancel();
         }
+    }
+
+    @Override
+    public void startProcess() {
+        readNfc();
     }
 
     /* access modifiers changed from: protected */
@@ -163,44 +166,44 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
                     dESedeReader.setBacInfo(bacInfo);
                     if (dESedeReader.initSession()) {
                         dESedeReader.setProgressListener(new WeakReference(this));
-                        ((ReadingPassportActivity) this.readingPassportActivity.get()).setMrtdProgressBarPercentage(5);
+                        this.readingPassportActivity.get().setMrtdProgressBarPercentage(5);
                         this.currentStep = 1;
                         byte[] readFile = dESedeReader.readFile(MrtdConstants.FID_DG1);
                         if (readFile == null) {
-//                            ((ReadingPassportActivity) this.readingPassportActivity.get()).showError(ReadingPassportActivity.this.getResources().getString(R.string.error_dg1_is_null));
+                            this.readingPassportActivity.get().showError(ReadingPassportActivity.this.getResources().getString(R.string.error_dg1_is_null));
                         }
-                        ((ReadingPassportActivity) this.readingPassportActivity.get()).setMrtdProgressBarPercentage(10);
-                        ((ReadingPassportActivity) this.readingPassportActivity.get()).setDg1(readFile);
+                        this.readingPassportActivity.get().setMrtdProgressBarPercentage(10);
+                        this.readingPassportActivity.get().setDg1(readFile);
                         new DG1Parser(readFile);
                         new C0464Tools();
                         this.currentStep = 2;
                         byte[] readFile2 = dESedeReader.readFile(MrtdConstants.FID_DG2);
                         if (readFile2 == null) {
-//                            ((ReadingPassportActivity) this.readingPassportActivity.get()).showError(ReadingPassportActivity.this.getResources().getString(R.string.error_dg2_is_null));
+                            ((ReadingPassportActivity) this.readingPassportActivity.get()).showError(ReadingPassportActivity.this.getResources().getString(R.string.error_dg2_is_null));
                         }
-                        ((ReadingPassportActivity) this.readingPassportActivity.get()).setDg2(readFile2);
+                        this.readingPassportActivity.get().setDg2(readFile2);
                         this.currentStep = 3;
-                        ((ReadingPassportActivity) this.readingPassportActivity.get()).setSOD(dESedeReader.readFile(MrtdConstants.FID_EF_SOD));
+                        this.readingPassportActivity.get().setSOD(dESedeReader.readFile(MrtdConstants.FID_EF_SOD));
                         if (!(readFile == null || readFile2 == null)) {
                             this.success = true;
                         }
                         if (!this.success) {
-//                            ((ReadingPassportActivity) this.readingPassportActivity.get()).showError(ReadingPassportActivity.this.getResources().getString(R.string.error_nfc_exception));
+                            this.readingPassportActivity.get().showError(ReadingPassportActivity.this.getResources().getString(R.string.error_nfc_exception));
                         }
-                        ((ReadingPassportActivity) this.readingPassportActivity.get()).setMrtdProgressBarPercentage(95);
+                        this.readingPassportActivity.get().setMrtdProgressBarPercentage(95);
                         return true;
                     }
                     System.out.println("Failed to init session");
-//                    ((ReadingPassportActivity) this.readingPassportActivity.get()).showError(ReadingPassportActivity.this.getResources().getString(R.string.error_mutual_authentication_failed));
+                    this.readingPassportActivity.get().showError(ReadingPassportActivity.this.getResources().getString(R.string.error_mutual_authentication_failed));
                     TagProvider.closeTag();
                     return false;
                 }
                 System.out.println("Couldn't get Tag from intent");
-//                ((ReadingPassportActivity) this.readingPassportActivity.get()).showError(ReadingPassportActivity.this.getResources().getString(R.string.error_lost_connexion));
+                this.readingPassportActivity.get().showError(ReadingPassportActivity.this.getResources().getString(R.string.error_lost_connexion));
                 return false;
             } catch (Exception unused) {
                 System.out.println("Exception");
-//                ((ReadingPassportActivity) this.readingPassportActivity.get()).showError(ReadingPassportActivity.this.getResources().getString(R.string.error_nfc_exception));
+                this.readingPassportActivity.get().showError(ReadingPassportActivity.this.getResources().getString(R.string.error_nfc_exception));
                 return false;
             }
         }
@@ -212,19 +215,19 @@ public class ReadingPassportActivity extends AbstractNfcActivity implements Seri
         /* access modifiers changed from: protected */
         public void onPostExecute(Boolean bool) {
             if (this.success) {
-                ((ReadingPassportActivity) this.readingPassportActivity.get()).showResult();
-                ((ReadingPassportActivity) this.readingPassportActivity.get()).finish();
+                this.readingPassportActivity.get().showResult();
+                this.readingPassportActivity.get().finish();
             }
         }
 
         public void updateProgress(int i) {
             int i2 = this.currentStep;
             if (i2 == 1) {
-                ((ReadingPassportActivity) this.readingPassportActivity.get()).setMrtdProgressBarPercentage(Math.round((float) ((i * 10) / 100)));
+                this.readingPassportActivity.get().setMrtdProgressBarPercentage(Math.round((float) ((i * 10) / 100)));
             } else if (i2 == 2) {
-                ((ReadingPassportActivity) this.readingPassportActivity.get()).setMrtdProgressBarPercentage(Math.round((float) ((i * 75) / 100)) + 10);
+                this.readingPassportActivity.get().setMrtdProgressBarPercentage(Math.round((float) ((i * 75) / 100)) + 10);
             } else if (i2 == 3) {
-                ((ReadingPassportActivity) this.readingPassportActivity.get()).setMrtdProgressBarPercentage(Math.round((float) ((i * 10) / 100)) + 85);
+                this.readingPassportActivity.get().setMrtdProgressBarPercentage(Math.round((float) ((i * 10) / 100)) + 85);
             }
         }
 

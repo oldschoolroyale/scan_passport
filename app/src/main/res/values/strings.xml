@@ -62,12 +62,12 @@
     <string name="character_counter_pattern">%1$d / %2$d</string>
     <string name="date_of_birth_text">Date of birth</string>
     <string name="date_of_expiry_text">Date of expiry</string>
-    <string name="error_dg1_is_null">Application error \'DG1\', please try again. If the problem persists report it us at panda@panda.cat</string>
-    <string name="error_dg2_is_null">Application error \'DG2\', please try again. If the problem persists report it us at panda@panda.cat</string>
+    <string name="error_dg1_is_null">Application error \'DG1\', please try again. </string>
+    <string name="error_dg2_is_null">Application error \'DG2\', please try again.</string>
     <string name="error_error">Error</string>
     <string name="error_lost_connexion">Lost connexion, please try again</string>
-    <string name="error_mutual_authentication_failed">Authentication failed, please check the passport No. / date of birth / date of expiry. If the problem persists write us at panda@panda.cat</string>
-    <string name="error_nfc_exception">An error occurred, please try again. If the problem persists write us at panda@panda.cat</string>
+    <string name="error_mutual_authentication_failed">Authentication failed, please check the passport No. / date of birth / date of expiry.</string>
+    <string name="error_nfc_exception">An error occurred, please try again.</string>
     <string name="fab_transformation_scrim_behavior">android.support.design.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior">android.support.design.transformation.FabTransformationSheetBehavior</string>
     <string name="found_nfc_text">Found NFC Tag!</string>
@@ -119,4 +119,6 @@
     <string name="button_ok">Ok</string>
     <string name="error">Error occured</string>
     <string name="error_camera_result_description">Error while getting result from camera, try again</string>
+    <string name="scan_passport">Scan passport</string>
+    <string name="scan_id">Scan ID</string>
 </resources>

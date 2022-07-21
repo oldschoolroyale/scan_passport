@@ -19,3 +19,12 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepattributes Exceptions, InnerClasses, Signature, Deprecated, SourceFile, LineNumberTable, *Annotation*, EnclosingMethod
+
+-renamesourcefileattribute SourceFile
+-classobfuscationdictionary "classes.dict"
+-obfuscationdictionary "methods.dict"
+-packageobfuscationdictionary "dictionary.dict"
+
+-repackageclasses "com.quiz"

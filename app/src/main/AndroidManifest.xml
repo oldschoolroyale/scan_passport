@@ -25,34 +25,27 @@
         <activity
             android:name=".ui.result.ResultActivity"
             android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".MainActivity" -->
-        <!-- android:exported="true"> -->
-        <!--  -->
-        <!-- </activity> -->
-        <activity
-            android:name="com.brm.MainActivity"
-            android:exported="true"/>
+         <activity
+         android:name=".MainActivity"
+         android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+
         <activity
             android:name=".ui.nfc.NfcActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ReadingPassportActivity"
             android:exported="false" />
-        <activity
-            android:name=".WaitingForNfcActivity"
-            android:exported="false" />
         <activity android:name=".ui.camera.CaptureActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="landscape"
             android:exported="false"/>
-        <activity android:name=".ui.entry.EntryActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
